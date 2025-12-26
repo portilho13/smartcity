@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "exavE15wJPgmrzW37wePkvZD8KA3UfR3oqB0SsLsUmw=",
+  "Source": "SmartCity.PaymentService.API",
+  "BasePath": "_content/SmartCity.PaymentService.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/DataLayer/SmartCity.DataLayer.PaymentService/SmartCity.DataLayer.PaymentService.csproj",
+      "Version": 2,
+      "Source": "SmartCity.DataLayer.PaymentService",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

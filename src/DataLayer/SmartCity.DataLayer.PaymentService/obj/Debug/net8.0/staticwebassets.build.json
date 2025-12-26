@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "qibSWZXSK7PXgXg23po0xRY4rZBvBRYABd6KCxjaJk0=",
+  "Source": "SmartCity.DataLayer.PaymentService",
+  "BasePath": "_content/SmartCity.DataLayer.PaymentService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/SmartCity.DataLayer.PaymentService.props" />
+</Project>

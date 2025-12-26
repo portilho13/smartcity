@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "q3SWT29cv++N6qqkGuNqO3HvbfzyMfwjgCjcuAb6RwY=",
+  "Source": "SmartCity.DataLayer.TripService",
+  "BasePath": "_content/SmartCity.DataLayer.TripService",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

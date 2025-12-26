@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "zr2ZqnVQshx0JJ2YlsN2AS2VfTBGFdQzEQj1SLKqIdY=",
+  "Source": "SmartCity.TripManagement.API",
+  "BasePath": "_content/SmartCity.TripManagement.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/DataLayer/SmartCity.DataLayer.TripService/SmartCity.DataLayer.TripService.csproj",
+      "Version": 2,
+      "Source": "SmartCity.DataLayer.TripService",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "fY1UHDRuj2ty+6onPwkzbPzSS/XfaGbvX4itjfXkB3Y=",
+  "Source": "SmartCity.VehicleManagement.API",
+  "BasePath": "_content/SmartCity.VehicleManagement.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/DataLayer/SmartCity.DataLayer.VehicleService/SmartCity.DataLayer.VehicleService.csproj",
+      "Version": 2,
+      "Source": "SmartCity.DataLayer.VehicleService",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

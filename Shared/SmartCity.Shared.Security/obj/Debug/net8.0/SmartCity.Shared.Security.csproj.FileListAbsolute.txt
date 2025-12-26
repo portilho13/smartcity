@@ -1,0 +1,12 @@
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/bin/Debug/net8.0/SmartCity.Shared.Security.deps.json
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/bin/Debug/net8.0/SmartCity.Shared.Security.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/bin/Debug/net8.0/SmartCity.Shared.Security.pdb
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.csproj.AssemblyReference.cache
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.GeneratedMSBuildEditorConfig.editorconfig
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.AssemblyInfoInputs.cache
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.AssemblyInfo.cs
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.csproj.CoreCompileInputs.cache
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/refint/SmartCity.Shared.Security.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.pdb
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/ref/SmartCity.Shared.Security.dll
