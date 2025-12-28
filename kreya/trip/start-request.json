@@ -1,5 +1,5 @@
 {
-  "vehicleId": "{{ env.vehicleId }}",
+  "vehicleId": "9a88d452-4018-4260-a228-e76262855291",
   "startLatitude": 41.14,
   "startLongitude": -8.61,
   "startStationId": "908a9402-b01e-4705-9056-eefa349c5d83"

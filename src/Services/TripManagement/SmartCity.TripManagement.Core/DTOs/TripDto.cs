@@ -15,10 +15,15 @@ public class TripDto
     public Guid? EndStationId { get; set; }
     public decimal? DistanceKm { get; set; }
     public int? DurationMinutes { get; set; }
+    
+    public decimal UnlockFee { get; set; }
+    public decimal RatePerMinute { get; set; }
+    
     public decimal? BaseFare { get; set; }
     public decimal? DistanceFare { get; set; }
     public decimal? TimeFare { get; set; }
     public decimal? TotalFare { get; set; }
+    
     public string Status { get; set; } = "active";
     public string? CancellationReason { get; set; }
     public int? Rating { get; set; }
@@ -55,6 +60,16 @@ public class StartTripRequest
     public decimal StartLatitude { get; set; }
     public decimal StartLongitude { get; set; }
     public Guid? StartStationId { get; set; }
+}
+
+public class StartTripWithPriceRequest
+{
+    public Guid VehicleId { get; set; }
+    public decimal StartLatitude { get; set; }
+    public decimal StartLongitude { get; set; }
+    public Guid? StartStationId { get; set; }
+    public decimal UnlockFee { get; set; }
+    public decimal RatePerMinute { get; set; }
 }
 
 public class EndTripRequest

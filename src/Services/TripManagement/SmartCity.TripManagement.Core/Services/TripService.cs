@@ -13,7 +13,7 @@ public interface ITripService
     Task<IEnumerable<TripDto>> GetTripsByUserAsync(Guid userId, int page, int pageSize);
     Task<IEnumerable<TripDto>> GetTripsByVehicleAsync(Guid vehicleId, int page, int pageSize);
     Task<IEnumerable<TripDto>> GetAllTripsAsync(int page, int pageSize);
-    Task<TripDto> StartTripAsync(Guid userId, StartTripRequest request);
+    Task<TripDto> StartTripAsync(Guid userId, StartTripWithPriceRequest request);
     Task<TripDto?> EndTripAsync(Guid tripId, EndTripRequest request);
     Task<bool> CancelTripAsync(Guid tripId, string reason);
     Task<bool> AddTripLocationAsync(Guid tripId, AddTripLocationRequest request);
@@ -68,7 +68,7 @@ public class TripService : ITripService
         return tripsData.Select(MapToDto);
     }
 
-    public async Task<TripDto> StartTripAsync(Guid userId, StartTripRequest request)
+    public async Task<TripDto> StartTripAsync(Guid userId, StartTripWithPriceRequest request)
     {
         var createRequest = new CreateTripRequest
         {
@@ -76,7 +76,9 @@ public class TripService : ITripService
             VehicleId = request.VehicleId,
             StartLatitude = request.StartLatitude,
             StartLongitude = request.StartLongitude,
-            StartStationId = request.StartStationId
+            StartStationId = request.StartStationId,
+            UnlockFee = request.UnlockFee,
+            RatePerMinute = request.RatePerMinute,
         };
 
         var tripData = await _soapClient.CreateTripAsync(createRequest);

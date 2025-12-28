@@ -1,6 +1,6 @@
 {
   "details": {
-    "path": "{{ env.tripId}}/end",
+    "path": "9aa381d8-fffe-4596-91d9-0e8c9ddb5df2/end",
     "method": "POST",
     "headers": [
       {

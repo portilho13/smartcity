@@ -65,7 +65,6 @@ public class CommandsController : ControllerBase
     /// Send a command to a vehicle
     /// </summary>
     [HttpPost("vehicles/{vehicleId}")]
-    [Authorize(Roles = "admin")]
     [ProducesResponseType(typeof(IoTCommandDto), StatusCodes.Status201Created)]
     public async Task<IActionResult> SendCommand(Guid vehicleId, [FromBody] SendCommandRequest request)
     {

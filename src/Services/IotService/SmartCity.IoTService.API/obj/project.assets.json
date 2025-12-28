@@ -3893,7 +3893,7 @@
     "SmartCity.IoTService.Core/1.0.0": {
       "type": "project",
       "path": "../SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj",
-      "msbuildProject": "../SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj"
+      "msbuildProject": "../../IoTService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3911,11 +3911,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IotService/SmartCity.IoTService.API/SmartCity.IoTService.API.csproj",
+      "projectUniqueName": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IoTService/SmartCity.IoTService.API/SmartCity.IoTService.API.csproj",
       "projectName": "SmartCity.IoTService.API",
-      "projectPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IotService/SmartCity.IoTService.API/SmartCity.IoTService.API.csproj",
+      "projectPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IoTService/SmartCity.IoTService.API/SmartCity.IoTService.API.csproj",
       "packagesPath": "/Users/marioportilho/.nuget/packages/",
-      "outputPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IotService/SmartCity.IoTService.API/obj/",
+      "outputPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IoTService/SmartCity.IoTService.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/marioportilho/.nuget/NuGet/NuGet.Config"
@@ -3930,8 +3930,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IotService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj": {
-              "projectPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IotService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj"
+            "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IoTService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj": {
+              "projectPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IoTService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj"
             }
           }
         }

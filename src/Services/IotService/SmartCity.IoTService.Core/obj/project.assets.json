@@ -3289,11 +3289,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IotService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj",
+      "projectUniqueName": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IoTService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj",
       "projectName": "SmartCity.IoTService.Core",
-      "projectPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IotService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj",
+      "projectPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IoTService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj",
       "packagesPath": "/Users/marioportilho/.nuget/packages/",
-      "outputPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IotService/SmartCity.IoTService.Core/obj/",
+      "outputPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/IoTService/SmartCity.IoTService.Core/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/marioportilho/.nuget/NuGet/NuGet.Config"

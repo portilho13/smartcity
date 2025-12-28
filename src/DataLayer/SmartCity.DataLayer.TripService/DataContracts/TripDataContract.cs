@@ -142,6 +142,12 @@ public class CreateTripRequest
 
     [DataMember(Order = 5)]
     public Guid? StartStationId { get; set; }
+    
+    [DataMember(Order = 6)]
+    public decimal UnlockFee { get; set; }
+    
+    [DataMember(Order = 7)]
+    public decimal RatePerMinute { get; set; }
 }
 
 [DataContract(Namespace = "http://smartcity.transport/tripdata/v1")]

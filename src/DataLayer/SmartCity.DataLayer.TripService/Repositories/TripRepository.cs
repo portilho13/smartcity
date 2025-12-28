@@ -136,27 +136,30 @@ public class TripRepository
     public async Task<TripDataContract> CreateAsync(CreateTripRequest request)
     {
         const string sql = @"
-            INSERT INTO trips (
-                user_id, vehicle_id, start_time, 
-                start_latitude, start_longitude, start_station_id,
-                status, created_at
-            )
-            VALUES (
-                @UserId, @VehicleId, CURRENT_TIMESTAMP,
-                @StartLatitude, @StartLongitude, @StartStationId,
-                'active', CURRENT_TIMESTAMP
-            )
-            RETURNING 
-                id, user_id as UserId, vehicle_id as VehicleId,
-                start_time as StartTime, end_time as EndTime,
-                start_latitude as StartLatitude, start_longitude as StartLongitude,
-                end_latitude as EndLatitude, end_longitude as EndLongitude,
-                start_station_id as StartStationId, end_station_id as EndStationId,
-                distance_km as DistanceKm, duration_minutes as DurationMinutes,
-                base_fare as BaseFare, distance_fare as DistanceFare,
-                time_fare as TimeFare, total_fare as TotalFare,
-                status, cancellation_reason as CancellationReason,
-                rating, review, created_at as CreatedAt, updated_at as UpdatedAt";
+        INSERT INTO trips (
+            user_id, vehicle_id, start_time, 
+            start_latitude, start_longitude, start_station_id,
+            unlock_fee, rate_per_minute,
+            status, created_at, updated_at
+        )
+        VALUES (
+            @UserId, @VehicleId, CURRENT_TIMESTAMP,
+            @StartLatitude, @StartLongitude, @StartStationId,
+            @UnlockFee, @RatePerMinute,
+            'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP
+        )
+        RETURNING 
+            id, user_id as UserId, vehicle_id as VehicleId,
+            start_time as StartTime, end_time as EndTime,
+            start_latitude as StartLatitude, start_longitude as StartLongitude,
+            end_latitude as EndLatitude, end_longitude as EndLongitude,
+            start_station_id as StartStationId, end_station_id as EndStationId,
+            distance_km as DistanceKm, duration_minutes as DurationMinutes,
+            unlock_fee as UnlockFee, rate_per_minute as RatePerMinute,
+            base_fare as BaseFare, distance_fare as DistanceFare,
+            time_fare as TimeFare, total_fare as TotalFare,
+            status, cancellation_reason as CancellationReason,
+            rating, review, created_at as CreatedAt, updated_at as UpdatedAt";
 
         using var connection = _connectionFactory.CreateConnection();
         return await connection.QuerySingleAsync<TripDataContract>(sql, request);
@@ -175,7 +178,11 @@ public class TripRepository
                     ll_to_earth(start_latitude, start_longitude),
                     ll_to_earth(@EndLatitude, @EndLongitude)
                 ) / 1000.0,
-                duration_minutes = EXTRACT(EPOCH FROM (CURRENT_TIMESTAMP - start_time)) / 60,
+                duration_minutes = CEIL(EXTRACT(EPOCH FROM (CURRENT_TIMESTAMP - start_time)) / 60)::integer,
+                base_fare = unlock_fee,
+                distance_fare = 0,
+                time_fare = rate_per_minute * CEIL(EXTRACT(EPOCH FROM (CURRENT_TIMESTAMP - start_time)) / 60),
+                total_fare = unlock_fee + (rate_per_minute * CEIL(EXTRACT(EPOCH FROM (CURRENT_TIMESTAMP - start_time)) / 60)),
                 status = 'completed',
                 updated_at = CURRENT_TIMESTAMP
             WHERE id = @TripId AND status = 'active'
@@ -186,6 +193,7 @@ public class TripRepository
                 end_latitude as EndLatitude, end_longitude as EndLongitude,
                 start_station_id as StartStationId, end_station_id as EndStationId,
                 distance_km as DistanceKm, duration_minutes as DurationMinutes,
+                unlock_fee as UnlockFee, rate_per_minute as RatePerMinute,
                 base_fare as BaseFare, distance_fare as DistanceFare,
                 time_fare as TimeFare, total_fare as TotalFare,
                 status, cancellation_reason as CancellationReason,

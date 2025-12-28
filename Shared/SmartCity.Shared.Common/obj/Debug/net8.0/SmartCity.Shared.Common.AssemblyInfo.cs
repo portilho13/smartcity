@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartCity.Shared.Common")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c1032f9c361a91a451d437644e3a47d69e78729")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+721acc8b2c9bb4a70c6eacec7ac122ed5bbeb51d")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartCity.Shared.Common")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartCity.Shared.Common")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

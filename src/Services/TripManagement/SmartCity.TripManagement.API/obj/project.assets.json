@@ -4051,7 +4051,7 @@
     "SmartCity.IoTService.Core/1.0.0": {
       "type": "project",
       "path": "../../IotService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj",
-      "msbuildProject": "../../IotService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj"
+      "msbuildProject": "../../IoTService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj"
     },
     "SmartCity.PaymentService.Core/1.0.0": {
       "type": "project",

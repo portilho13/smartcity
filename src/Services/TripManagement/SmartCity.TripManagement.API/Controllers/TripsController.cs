@@ -170,8 +170,26 @@ public class TripsController : ControllerBase
             CommandType = "unlock",
             Parameters = null
         };
+        
+        var commandResponse = await _httpClient.PostAsJsonAsync($"http://iotservice-api:5005/api/v1/commands/vehicles/{vehicleId}",commandRequest);
+        if (!commandResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to create iot command. Status: {StatusCode}, Reason: {Reason}",
+                commandResponse.StatusCode, commandResponse.ReasonPhrase);
+            return StatusCode((int)commandResponse.StatusCode, new { error = "Failed to iot command" });
+        }
 
-        var trip = await _tripService.StartTripAsync(userId, request);
+        var startTripRequest = new StartTripWithPriceRequest
+        {
+            VehicleId = request.VehicleId,
+            StartLongitude = request.StartLongitude,
+            StartLatitude = request.StartLatitude,
+            StartStationId = request.StartStationId,
+            RatePerMinute = vehicleType.BasePricePerMinute,
+            UnlockFee = vehicleType.UnlockFee,
+        };
+        
+        var trip = await _tripService.StartTripAsync(userId, startTripRequest);
 
         return CreatedAtAction(nameof(GetTripById), new { id = trip.Id }, trip);
     }
@@ -186,6 +204,12 @@ public class TripsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status403Forbidden)]
     public async Task<IActionResult> EndTrip(Guid id, [FromBody] EndTripRequest request)
     {
+        var accessToken = Request.Headers["Authorization"].FirstOrDefault()?.Replace("Bearer ", "");
+        if (string.IsNullOrEmpty(accessToken))
+            return Unauthorized(new { error = "Access token missing" });
+
+        _httpClient.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
         var trip = await _tripService.GetTripByIdAsync(id);
         if (trip == null)
             return NotFound(new { error = $"Trip with ID {id} not found" });
@@ -196,6 +220,62 @@ public class TripsController : ControllerBase
         var updatedTrip = await _tripService.EndTripAsync(id, request);
         if (updatedTrip == null)
             return BadRequest(new { error = "Failed to end trip" });
+        
+        var paymentMethodResponse = await _httpClient.GetAsync("http://paymentservice-api:5004/api/v1/paymentmethods/my-methods/default");
+
+        if (!paymentMethodResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to get payment method. Status: {StatusCode}, Reason: {Reason}",
+                paymentMethodResponse.StatusCode, paymentMethodResponse.ReasonPhrase);
+            return StatusCode((int)paymentMethodResponse.StatusCode, new { error = "Failed to get payment method" });
+        }
+        
+        var paymentMethod = await paymentMethodResponse.Content.ReadFromJsonAsync<PaymentMethodDto>();
+
+        var paymentRequest = new CreatePaymentRequest
+        {
+            TripId = id,
+            Amount = updatedTrip.TotalFare ?? 0m,
+            Currency = "EUR",
+            PaymentMethodId = paymentMethod.Id
+        };
+        
+        var paymentResponse = await _httpClient.PostAsJsonAsync(
+            "http://paymentservice-api:5004/api/v1/payments",
+            paymentRequest
+            );
+        
+        if (!paymentResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to make payment. Status: {StatusCode}, Reason: {Reason}",
+                paymentResponse.StatusCode, paymentResponse.ReasonPhrase);
+            return StatusCode((int)paymentResponse.StatusCode, new { error = "Failed to make payment" });
+        }
+        var vehicleStatusUpdateResponse = await _httpClient.PutAsJsonAsync(
+            $"http://vehiclemanagement-api:5002/api/v1/vehicles/{updatedTrip.VehicleId}/status",
+            new UpdateVehicleStatusRequest { Status = "available" }
+        );
+
+        if (!vehicleStatusUpdateResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to update vehicle status. Status: {StatusCode}, Reason: {Reason}",
+                vehicleStatusUpdateResponse.StatusCode, vehicleStatusUpdateResponse.ReasonPhrase);
+            return StatusCode((int)vehicleStatusUpdateResponse.StatusCode, new { error = "Failed to update vehicle status" });
+        }
+        
+        var commandRequest = new SendCommandRequest
+        {
+            CommandType = "lock",
+            Parameters = null
+        };
+        
+        var commandResponse = await _httpClient.PostAsJsonAsync($"http://iotservice-api:5005/api/v1/commands/vehicles/{updatedTrip.VehicleId}",commandRequest);
+        if (!commandResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to create iot command. Status: {StatusCode}, Reason: {Reason}",
+                commandResponse.StatusCode, commandResponse.ReasonPhrase);
+            return StatusCode((int)commandResponse.StatusCode, new { error = "Failed to iot command" });
+        }
 
         return Ok(updatedTrip);
     }
