@@ -65,6 +65,7 @@ public class CommandsController : ControllerBase
     /// Send a command to a vehicle
     /// </summary>
     [HttpPost("vehicles/{vehicleId}")]
+    [AllowAnonymous]
     [ProducesResponseType(typeof(IoTCommandDto), StatusCodes.Status201Created)]
     public async Task<IActionResult> SendCommand(Guid vehicleId, [FromBody] SendCommandRequest request)
     {
@@ -83,7 +84,7 @@ public class CommandsController : ControllerBase
     /// Update command status (IoT devices endpoint)
     /// </summary>
     [HttpPut("{id}/status")]
-    [AllowAnonymous] // IoT devices might use API keys
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateCommandStatus(

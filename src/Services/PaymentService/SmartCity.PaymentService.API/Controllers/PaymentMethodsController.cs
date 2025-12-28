@@ -8,7 +8,6 @@ namespace SmartCity.PaymentService.API.Controllers;
 
 [ApiController]
 [Route("api/v1/[controller]")]
-[Authorize]
 public class PaymentMethodsController : ControllerBase
 {
     private readonly IPaymentService _paymentService;
@@ -36,6 +35,16 @@ public class PaymentMethodsController : ControllerBase
     [ProducesResponseType(typeof(IEnumerable<PaymentMethodDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetMyPaymentMethods()
     {
+        _logger.LogInformation("=== GetMyDefaultPaymentMethod endpoint hit ===");
+        _logger.LogInformation("IsAuthenticated: {IsAuth}", User.Identity?.IsAuthenticated);
+        _logger.LogInformation("Auth Type: {AuthType}", User.Identity?.AuthenticationType);
+        _logger.LogInformation("Claims count: {Count}", User.Claims.Count());
+    
+        foreach (var claim in User.Claims)
+        {
+            _logger.LogInformation("Claim: {Type} = {Value}", claim.Type, claim.Value);
+        }
+
         var userId = GetCurrentUserId();
         var methods = await _paymentService.GetPaymentMethodsByUserAsync(userId);
         return Ok(methods);

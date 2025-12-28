@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Text;
@@ -29,7 +30,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["JwtSettings:Issuer"],
             ValidAudience = builder.Configuration["JwtSettings:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret)),
         };
     });
 
@@ -38,7 +39,7 @@ builder.Services.AddAuthorization();
 // Configure SOAP Client
 builder.Services.AddScoped<IPaymentDataService>(provider =>
 {
-    var soapUrl = builder.Configuration["SoapServices:TripDataService"] 
+    var soapUrl = builder.Configuration["SoapServices:PaymentDataService"] 
         ?? "http://localhost:5102/TripDataService.svc";
     
     var binding = new BasicHttpBinding

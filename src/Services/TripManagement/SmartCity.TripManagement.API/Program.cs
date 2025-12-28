@@ -54,7 +54,7 @@ builder.Services.AddScoped<ITripDataService>(provider =>
     return factory.CreateChannel();
 });
 
-builder.Services.AddSingleton(new HttpClient());
+builder.Services.AddHttpClient();
 
 // Register services
 builder.Services.AddScoped<ITripService, TripService>();
@@ -109,7 +109,6 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseDeveloperExceptionPage();
-
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartCity.DataLayer.TripService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+721acc8b2c9bb4a70c6eacec7ac122ed5bbeb51d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3db632562ed8a16170508b41de1680cbda4a36bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartCity.DataLayer.TripService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartCity.DataLayer.TripService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

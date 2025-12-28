@@ -1,6 +1,6 @@
 {
   "details": {
-    "path": "a7fa4d2b-64a0-485d-9abe-b2a480959c74/end",
+    "path": "/commands/vehicles/9a88d452-4018-4260-a228-e76262855291⁠",
     "method": "POST",
     "headers": [
       {
@@ -16,7 +16,7 @@
   },
   "requests": [
     {
-      "location": "end-request.json",
+      "location": "send command-request.json",
       "contentType": "json"
     }
   ],
