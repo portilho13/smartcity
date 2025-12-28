@@ -1762,6 +1762,16 @@
         "runtime": {
           "bin/placeholder/SmartCity.VehicleManagement.Core.dll": {}
         }
+      },
+      "SmartCity.Weather.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/SmartCity.Weather.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SmartCity.Weather.Core.dll": {}
+        }
       }
     }
   },
@@ -4077,6 +4087,11 @@
       "type": "project",
       "path": "../../VehicleManagement/SmartCity.VehicleManagement.Core/SmartCity.VehicleManagement.Core.csproj",
       "msbuildProject": "../../VehicleManagement/SmartCity.VehicleManagement.Core/SmartCity.VehicleManagement.Core.csproj"
+    },
+    "SmartCity.Weather.Core/1.0.0": {
+      "type": "project",
+      "path": "../../Weather/SmartCity.Weather.Core/SmartCity.Weather.Core.csproj",
+      "msbuildProject": "../../Weather/SmartCity.Weather.Core/SmartCity.Weather.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4088,6 +4103,7 @@
       "SmartCity.PaymentService.Core >= 1.0.0",
       "SmartCity.TripManagement.Core >= 1.0.0",
       "SmartCity.VehicleManagement.Core >= 1.0.0",
+      "SmartCity.Weather.Core >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0",
       "System.ServiceModel.Http >= 8.0.0"
     ]
@@ -4128,6 +4144,9 @@
             },
             "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.Core/SmartCity.VehicleManagement.Core.csproj": {
               "projectPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.Core/SmartCity.VehicleManagement.Core.csproj"
+            },
+            "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/Weather/SmartCity.Weather.Core/SmartCity.Weather.Core.csproj": {
+              "projectPath": "/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/Weather/SmartCity.Weather.Core/SmartCity.Weather.Core.csproj"
             }
           }
         }

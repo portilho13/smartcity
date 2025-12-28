@@ -6,6 +6,7 @@ using System.Security.Claims;
 using SmartCity.IoTService.Core.DTOs;
 using SmartCity.PaymentService.Core.DTOs;
 using SmartCity.VehicleManagement.Core.DTOs;
+using SmartCity.Weather.Core.DTOs;
 
 namespace SmartCity.TripManagement.API.Controllers;
 
@@ -48,11 +49,9 @@ public class TripsController : ControllerBase
     
         if (!string.IsNullOrEmpty(authHeader))
         {
-            // Check if it starts with "Bearer "
             if (authHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
             {
-                // Extract just the token part
-                var token = authHeader.Substring(7); // "Bearer " is 7 characters
+                var token = authHeader.Substring(7);
                 httpClient.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
             
@@ -60,7 +59,6 @@ public class TripsController : ControllerBase
             }
             else
             {
-                // If it doesn't have "Bearer ", assume it's just the token
                 httpClient.DefaultRequestHeaders.Authorization =
                     new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authHeader);
             
@@ -230,8 +228,40 @@ public class TripsController : ControllerBase
         };
         
         var trip = await _tripService.StartTripAsync(userId, startTripRequest);
+        
+        var weatherResponse = await httpClient.GetAsync(
+            $"http://weather-api:5007/api/v1/weather?latitude={request.StartLatitude}&longitude={request.StartLongitude}"
+            );
+            
+        if (!weatherResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to get weather. Status: {StatusCode}, Reason: {Reason}",
+                weatherResponse.StatusCode, weatherResponse.ReasonPhrase);
+            return StatusCode((int)weatherResponse.StatusCode, 
+                new { error = "Failed to get weather" });
+        }
+        
+        var weatherDto = await weatherResponse.Content.ReadFromJsonAsync<WeatherDto>();
 
-        return CreatedAtAction(nameof(GetTripById), new { id = trip.Id }, trip);
+        if (weatherDto == null)
+        {
+            return BadRequest("Weather data unavailable");
+        }
+
+        var response = new TripWithWeatherDto
+        {
+            Trip = trip,
+            CurrentTemperature = weatherDto.Current.Temperature2M,
+            WindSpeed = weatherDto.Current.WindSpeed10M
+        };
+        
+        return CreatedAtAction(
+            nameof(GetTripById),
+            new { id = trip.Id },
+            response
+        );
+
+
     }
 
     /// <summary>
@@ -419,5 +449,20 @@ public class TripsController : ControllerBase
     {
         var stats = await _tripService.GetSystemStatisticsAsync(startDate, endDate);
         return Ok(stats);
+    }
+    
+    
+    /// <summary>
+    /// Get user trip message to share on social media
+    /// </summary>
+    [HttpGet("social")]
+    public async Task<IActionResult> GetTripDistance([FromQuery] Guid tripId)
+    {
+        var trip = await _tripService.GetTripByIdAsync(tripId);
+        if (trip == null)
+            return NotFound(new { message = $"Trip with ID {tripId} not found" });
+
+        var distance = trip.DistanceKm ?? 0;
+        return Ok(new { tripId = trip.Id, distanceKm = distance, message = $"Trip distance: {distance} km" });
     }
 }

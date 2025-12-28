@@ -3,7 +3,7 @@
     {
       "options": {
         "rest": {
-          "endpoint": "http://localhost:5001/api/v1/auth",
+          "endpoint": "http://localhost:5010/api/v1/auth",
           "pathParams": []
         }
       }

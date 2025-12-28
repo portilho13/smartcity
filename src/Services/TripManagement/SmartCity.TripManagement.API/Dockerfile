@@ -6,6 +6,7 @@ COPY ["src/Services/TripManagement/SmartCity.TripManagement.Core/SmartCity.TripM
 COPY ["src/Services/VehicleManagement/SmartCity.VehicleManagement.Core/SmartCity.VehicleManagement.Core.csproj", "src/Services/VehicleManagement/SmartCity.VehicleManagement.Core/"]
 COPY ["src/Services/PaymentService/SmartCity.PaymentService.Core/SmartCity.PaymentService.Core.csproj", "src/Services/PaymentService/SmartCity.PaymentService.Core/"]
 COPY ["src/Services/IoTService/SmartCity.IoTService.Core/SmartCity.IoTService.Core.csproj", "src/Services/IoTService/SmartCity.IoTService.Core/"]
+COPY ["src/Services/Weather/SmartCity.Weather.Core/SmartCity.Weather.Core.csproj", "src/Services/Weather/SmartCity.Weather.Core/"]
 RUN dotnet restore "src/Services/TripManagement/SmartCity.TripManagement.API/SmartCity.TripManagement.API.csproj"
 
 COPY . .

@@ -18,6 +18,7 @@
       <ProjectReference Include="..\..\IoTService\SmartCity.IoTService.Core\SmartCity.IoTService.Core.csproj" />
       <ProjectReference Include="..\..\PaymentService\SmartCity.PaymentService.Core\SmartCity.PaymentService.Core.csproj" />
       <ProjectReference Include="..\..\VehicleManagement\SmartCity.VehicleManagement.Core\SmartCity.VehicleManagement.Core.csproj" />
+      <ProjectReference Include="..\..\Weather\SmartCity.Weather.Core\SmartCity.Weather.Core.csproj" />
       <ProjectReference Include="..\SmartCity.TripManagement.Core\SmartCity.TripManagement.Core.csproj" />
     </ItemGroup>
 

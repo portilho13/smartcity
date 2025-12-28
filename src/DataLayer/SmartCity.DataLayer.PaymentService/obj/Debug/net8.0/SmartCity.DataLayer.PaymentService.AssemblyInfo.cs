@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartCity.DataLayer.PaymentService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3db632562ed8a16170508b41de1680cbda4a36bb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a5ed5b927c59038c7611aafad8a3a0adfdeab87")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartCity.DataLayer.PaymentService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartCity.DataLayer.PaymentService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

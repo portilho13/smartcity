@@ -42,6 +42,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.AnalyticsService.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.AnalyticsService.API", "src\Services\AnalyticsService\SmartCity.AnalyticsService.API\SmartCity.AnalyticsService.API.csproj", "{548A7A6F-4874-4A81-9B85-ECE45F855E37}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Weather.Core", "src\Services\Weather\SmartCity.Weather.Core\SmartCity.Weather.Core.csproj", "{9CFB22D3-A9C1-48D4-A505-6BA2B1874211}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.Weather.API", "src\Services\Weather\SmartCity.Weather.API\SmartCity.Weather.API.csproj", "{5D7714B1-8F3B-4363-B139-A308AA5D2DE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartCity.ApiGateway", "src\Services\Gateway\SmartCity.ApiGateway\SmartCity.ApiGateway.csproj", "{824231E5-6CA5-404B-95FA-81D45BFE5CC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,5 +138,17 @@ Global
 		{548A7A6F-4874-4A81-9B85-ECE45F855E37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{548A7A6F-4874-4A81-9B85-ECE45F855E37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{548A7A6F-4874-4A81-9B85-ECE45F855E37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CFB22D3-A9C1-48D4-A505-6BA2B1874211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CFB22D3-A9C1-48D4-A505-6BA2B1874211}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CFB22D3-A9C1-48D4-A505-6BA2B1874211}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CFB22D3-A9C1-48D4-A505-6BA2B1874211}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D7714B1-8F3B-4363-B139-A308AA5D2DE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D7714B1-8F3B-4363-B139-A308AA5D2DE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D7714B1-8F3B-4363-B139-A308AA5D2DE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D7714B1-8F3B-4363-B139-A308AA5D2DE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{824231E5-6CA5-404B-95FA-81D45BFE5CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{824231E5-6CA5-404B-95FA-81D45BFE5CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{824231E5-6CA5-404B-95FA-81D45BFE5CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{824231E5-6CA5-404B-95FA-81D45BFE5CC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

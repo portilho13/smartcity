@@ -190,6 +190,35 @@ services:
     networks:
       - smartcity-network
 
+  weather-api:
+    build:
+      context: ..
+      dockerfile: src/Services/Weather/SmartCity.Weather.API/Dockerfile
+    container_name: weather-api
+    ports:
+      - "5007:5007"
+    networks:
+      - smartcity-network
+  
+  api-gateway:
+    build:
+      context: ..
+      dockerfile: src/Services/Gateway/SmartCity.ApiGateway/Dockerfile
+    container_name: api-gateway
+    ports:
+      - "5010:5010"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    depends_on:
+      - usermanagement-api
+      - vehiclemanagement-api
+      - tripmanagement-api
+      - paymentservice-api
+      - iotservice-api
+      - analyticsservice-api
+    networks:
+      - smartcity-network
+
 volumes:
   postgres_data:
 

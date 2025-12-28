@@ -97,3 +97,10 @@ public class RateTripRequest
     public int Rating { get; set; }
     public string? Review { get; set; }
 }
+
+public class TripWithWeatherDto
+{
+    public TripDto Trip { get; set; } = new();
+    public double CurrentTemperature { get; set; }
+    public double WindSpeed { get; set; }
+}
