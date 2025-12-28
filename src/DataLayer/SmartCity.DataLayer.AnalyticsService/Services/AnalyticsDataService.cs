@@ -1,3 +1,14 @@
+/*
+ * ===================================================================================
+ * TRABALHO PRÁTICO: Integração de Sistemas de Informação (ISI)
+ * -----------------------------------------------------------------------------------
+ * Nome: Mario Junior Manhente Portilho
+ * Número: a27989
+ * Curso: Engenharia de Sistemas Informáticos
+ * Ano Letivo: 2025/2026
+ * ===================================================================================
+ */
+
 using CoreWCF;
 using SmartCity.DataLayer.AnalyticsService.Contracts;
 using SmartCity.DataLayer.AnalyticsService.DataContracts;

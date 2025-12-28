@@ -1,3 +1,14 @@
+/*
+ * ===================================================================================
+ * TRABALHO PRÁTICO: Integração de Sistemas de Informação (ISI)
+ * -----------------------------------------------------------------------------------
+ * Nome: Mario Junior Manhente Portilho
+ * Número: a27989
+ * Curso: Engenharia de Sistemas Informáticos
+ * Ano Letivo: 2025/2026
+ * ===================================================================================
+ */
+
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Text;
@@ -11,7 +22,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.UseUrls("http://0.0.0.0:5006");
 
-// Configure JWT
 var jwtSecret = builder.Configuration["JwtSettings:Secret"];
 if (string.IsNullOrEmpty(jwtSecret) || jwtSecret.Length < 32)
 {

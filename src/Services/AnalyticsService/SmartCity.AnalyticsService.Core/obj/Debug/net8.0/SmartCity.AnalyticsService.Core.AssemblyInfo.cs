@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartCity.AnalyticsService.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2a5ed5b927c59038c7611aafad8a3a0adfdeab87")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c00c8224958a1e3932b65537ef3f88b5a44c8b5c")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartCity.AnalyticsService.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartCity.AnalyticsService.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
