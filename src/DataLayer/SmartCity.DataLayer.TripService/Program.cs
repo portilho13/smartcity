@@ -9,7 +9,10 @@ using SmartCity.DataLayer.TripService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var tripDbConnectionString = "Host=localhost;Port=5432;Database=smartcity_trips;Username=myuser;Password=mypassword";
+builder.WebHost.UseUrls("http://0.0.0.0:5103");
+
+
+var tripDbConnectionString = builder.Configuration.GetConnectionString("TripDatabase")  ?? "Host=localhost;Port=5432;Database=smartcity_trips;Username=myuser;Password=mypassword";
 
 builder.Services.AddSingleton(provider => new DatabaseConnectionFactory(tripDbConnectionString));
 builder.Services.AddScoped<TripRepository>();
@@ -24,7 +27,7 @@ app.UseServiceModel(serviceBuilder =>
 {
     serviceBuilder.AddService<TripDataService>(options =>
     {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = app.Environment.IsDevelopment();
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
     });
 
     serviceBuilder.AddServiceEndpoint<TripDataService, ITripDataService>(

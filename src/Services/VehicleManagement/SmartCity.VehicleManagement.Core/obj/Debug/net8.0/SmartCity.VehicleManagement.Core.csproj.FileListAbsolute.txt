@@ -22,3 +22,4 @@
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.Core/obj/Debug/net8.0/refint/SmartCity.VehicleManagement.Core.dll
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.Core/obj/Debug/net8.0/SmartCity.VehicleManagement.Core.pdb
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.Core/obj/Debug/net8.0/ref/SmartCity.VehicleManagement.Core.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.Core/obj/Debug/net8.0/SmartCity.VehicleManagement.Core.sourcelink.json

@@ -108,7 +108,7 @@ public class VehiclesController : ControllerBase
     /// Update vehicle status
     /// </summary>
     [HttpPut("{id}/status")]
-    [Authorize(Roles = "admin")]
+    [Authorize()]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> UpdateVehicleStatus(Guid id, [FromBody] UpdateVehicleStatusRequest request)

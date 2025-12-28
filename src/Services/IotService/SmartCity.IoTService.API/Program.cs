@@ -9,7 +9,7 @@ using SmartCity.IoTService.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://localhost:5005");
+builder.WebHost.UseUrls("http://0.0.0.0:5005");
 
 // Configure JWT
 var jwtSecret = builder.Configuration["JwtSettings:Secret"];
@@ -52,6 +52,12 @@ builder.Services.AddScoped<IIoTDataService>(provider =>
     var factory = new ChannelFactory<IIoTDataService>(binding, endpoint);
     
     return factory.CreateChannel();
+});
+
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
 });
 
 // Register services
@@ -97,15 +103,8 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartCity IoT Service API v1");
-        c.RoutePrefix = "swagger";
-    });
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();

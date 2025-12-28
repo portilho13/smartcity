@@ -9,8 +9,10 @@ using SmartCity.DataLayer.VehicleService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls("http://0.0.0.0:5102");
+
 // Hardcoded connection string
-var userDbConnectionString = "Host=localhost;Port=5432;Database=smartcity_vehicles;Username=myuser;Password=mypassword";
+var userDbConnectionString = builder.Configuration.GetConnectionString("VehicleDatabase") ?? "Host=localhost;Port=5432;Database=smartcity_vehicles;Username=myuser;Password=mypassword";
 
 // Add services
 builder.Services.AddSingleton(provider => new DatabaseConnectionFactory(userDbConnectionString));
@@ -26,7 +28,7 @@ app.UseServiceModel(serviceBuilder =>
 {
     serviceBuilder.AddService<VehicleDataService>(options =>
     {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = app.Environment.IsDevelopment();
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
     });
 
     serviceBuilder.AddServiceEndpoint<VehicleDataService, IVehicleDataService>(

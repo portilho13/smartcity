@@ -9,11 +9,11 @@ using SmartCity.DataLayer.AnalyticsService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://localhost:5106");
+builder.WebHost.UseUrls("http://0.0.0.0:5106");
 
-var tripsDbConnectionString = "Host=localhost;Port=5432;Database=smartcity_trips;Username=myuser;Password=mypassword";
-var vehiclesDbConnectionString = "Host=localhost;Port=5432;Database=smartcity_vehicles;Username=myuser;Password=mypassword";
-var usersDbConnectionString = "Host=localhost;Port=5432;Database=smartcity_users;Username=myuser;Password=mypassword";
+var tripsDbConnectionString = builder.Configuration.GetConnectionString("AnalyticsDatabase") ?? "Host=localhost;Port=5432;Database=smartcity_trips;Username=myuser;Password=mypassword";
+var vehiclesDbConnectionString = builder.Configuration.GetConnectionString("UserDatabase") ?? "Host=localhost;Port=5432;Database=smartcity_vehicles;Username=myuser;Password=mypassword";
+var usersDbConnectionString = builder.Configuration.GetConnectionString("UserDatabase") ?? "Host=localhost;Port=5432;Database=smartcity_users;Username=myuser;Password=mypassword";
 
 builder.Services.AddSingleton(provider => new DatabaseConnectionFactory(tripsDbConnectionString));
 builder.Services.AddScoped<AnalyticsRepository>();
@@ -28,7 +28,7 @@ app.UseServiceModel(serviceBuilder =>
 {
     serviceBuilder.AddService<AnalyticsDataService>(options =>
     {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = app.Environment.IsDevelopment();
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
     });
 
     serviceBuilder.AddServiceEndpoint<AnalyticsDataService, IAnalyticsDataService>(

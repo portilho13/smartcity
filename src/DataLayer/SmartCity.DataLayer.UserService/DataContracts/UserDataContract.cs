@@ -21,7 +21,7 @@ public class UserDataContract
     public string? PhoneNumber { get; set; }
 
     [DataMember(Order = 6)]
-    public DateTime? DateOfBirth { get; set; }
+    public DateOnly? DateOfBirth { get; set; }
 
     [DataMember(Order = 7)]
     public string? ProfilePictureUrl { get; set; }
@@ -61,5 +61,5 @@ public class CreateUserDataContract
     public string? PhoneNumber { get; set; }
 
     [DataMember(Order = 6)]
-    public DateTime? DateOfBirth { get; set; }
+    public DateOnly? DateOfBirth { get; set; }
 }

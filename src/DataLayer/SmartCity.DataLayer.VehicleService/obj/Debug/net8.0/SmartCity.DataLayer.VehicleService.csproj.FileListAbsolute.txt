@@ -107,3 +107,4 @@
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/DataLayer/SmartCity.DataLayer.VehicleService/bin/Debug/net8.0/tr/System.ServiceModel.Primitives.resources.dll
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/DataLayer/SmartCity.DataLayer.VehicleService/bin/Debug/net8.0/zh-Hans/System.ServiceModel.Primitives.resources.dll
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/DataLayer/SmartCity.DataLayer.VehicleService/bin/Debug/net8.0/zh-Hant/System.ServiceModel.Primitives.resources.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/DataLayer/SmartCity.DataLayer.VehicleService/obj/Debug/net8.0/SmartCity.DataLayer.VehicleService.sourcelink.json

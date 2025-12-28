@@ -1,23 +1,198 @@
-version: "3.9"
+version: '3.8'
 
 services:
   postgres:
     image: postgres:16
-    container_name: postgres
-    restart: unless-stopped
+    container_name: smartcity-postgres
     environment:
-      POSTGRES_DB: mydb
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U myuser -d mydb"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    networks:
+      - smartcity-network
+
+  # SOAP Services
+  userdata-soap:
+    build:
+      context: ..
+      dockerfile: src/DataLayer/SmartCity.DataLayer.UserService/Dockerfile
+    container_name: userdata-soap
+    ports:
+      - "5101:5101"
+    environment:
+      - ConnectionStrings__UserDatabase=Host=postgres;Port=5432;Database=smartcity_users;Username=myuser;Password=mypassword
+    depends_on:
+      - postgres
+    networks:
+      - smartcity-network
+
+  vehicledata-soap:
+    build:
+      context: ..
+      dockerfile: src/DataLayer/SmartCity.DataLayer.VehicleService/Dockerfile
+    container_name: vehicledata-soap
+    ports:
+      - "5102:5102"
+    environment:
+      - ConnectionStrings__VehicleDatabase=Host=postgres;Port=5432;Database=smartcity_vehicles;Username=myuser;Password=mypassword
+    depends_on:
+      - postgres
+    networks:
+      - smartcity-network
+
+  tripdata-soap:
+    build:
+      context: ..
+      dockerfile: src/DataLayer/SmartCity.DataLayer.TripService/Dockerfile
+    container_name: tripdata-soap
+    ports:
+      - "5103:5103"
+    environment:
+      - ConnectionStrings__TripDatabase=Host=postgres;Port=5432;Database=smartcity_trips;Username=myuser;Password=mypassword
+    depends_on:
+      - postgres
+    networks:
+      - smartcity-network
+
+  paymentdata-soap:
+    build:
+      context: ..
+      dockerfile: src/DataLayer/SmartCity.DataLayer.PaymentService/Dockerfile
+    container_name: paymentdata-soap
+    ports:
+      - "5104:5104"
+    environment:
+      - ConnectionStrings__PaymentDatabase=Host=postgres;Port=5432;Database=smartcity_payments;Username=myuser;Password=mypassword
+    depends_on:
+      - postgres
+    networks:
+      - smartcity-network
+
+  iotdata-soap:
+    build:
+      context: ..
+      dockerfile: src/DataLayer/SmartCity.DataLayer.IoTService/Dockerfile
+    container_name: iotdata-soap
+    ports:
+      - "5105:5105"
+    environment:
+      - ConnectionStrings__IoTDatabase=Host=postgres;Port=5432;Database=smartcity_iot;Username=myuser;Password=mypassword
+    depends_on:
+      - postgres
+    networks:
+      - smartcity-network
+
+  analyticsdata-soap:
+    build:
+      context: ..
+      dockerfile: src/DataLayer/SmartCity.DataLayer.AnalyticsService/Dockerfile
+    container_name: analyticsdata-soap
+    ports:
+      - "5106:5106"
+    environment:
+      - ConnectionStrings__AnalyticsDatabase=Host=postgres;Port=5432;Database=smartcity_trips;Username=myuser;Password=mypassword
+    depends_on:
+      - postgres
+    networks:
+      - smartcity-network
+
+  # REST APIs
+  usermanagement-api:
+    build:
+      context: ..
+      dockerfile: src/Services/UserManagement/SmartCity.UserManagement.API/Dockerfile
+    container_name: usermanagement-api
+    ports:
+      - "5001:5001"
+    environment:
+      - SoapServices__UserDataService=http://userdata-soap:5101/UserDataService.svc
+    depends_on:
+      - userdata-soap
+    networks:
+      - smartcity-network
+
+  vehiclemanagement-api:
+    build:
+      context: ..
+      dockerfile: src/Services/VehicleManagement/SmartCity.VehicleManagement.API/Dockerfile
+    container_name: vehiclemanagement-api
+    ports:
+      - "5002:5002"
+    environment:
+      - SoapServices__VehicleDataService=http://vehicledata-soap:5102/VehicleDataService.svc
+    depends_on:
+      - vehicledata-soap
+    networks:
+      - smartcity-network
+
+  tripmanagement-api:
+    build:
+      context: ..
+      dockerfile: src/Services/TripManagement/SmartCity.TripManagement.API/Dockerfile
+    container_name: tripmanagement-api
+    ports:
+      - "5003:5003"
+    environment:
+      - SoapServices__TripDataService=http://tripdata-soap:5103/TripDataService.svc
+      - ServiceUrls__VehicleManagement=http://vehiclemanagement-api:5002
+      - ServiceUrls__PaymentService=http://paymentservice-api:5004
+      - ServiceUrls__IoTService=http://iotservice-api:5005
+    depends_on:
+      - tripdata-soap
+      - vehiclemanagement-api
+      - paymentservice-api
+      - iotservice-api
+    networks:
+      - smartcity-network
+
+  paymentservice-api:
+    build:
+      context: ..
+      dockerfile: src/Services/PaymentService/SmartCity.PaymentService.API/Dockerfile
+    container_name: paymentservice-api
+    ports:
+      - "5004:5004"
+    environment:
+      - SoapServices__PaymentDataService=http://paymentdata-soap:5104/PaymentDataService.svc
+    depends_on:
+      - paymentdata-soap
+    networks:
+      - smartcity-network
+
+  iotservice-api:
+    build:
+      context: ..
+      dockerfile: src/Services/IoTService/SmartCity.IoTService.API/Dockerfile
+    container_name: iotservice-api
+    ports:
+      - "5005:5005"
+    environment:
+      - SoapServices__IoTDataService=http://iotdata-soap:5105/IoTDataService.svc
+    depends_on:
+      - iotdata-soap
+    networks:
+      - smartcity-network
+
+  analyticsservice-api:
+    build:
+      context: ..
+      dockerfile: src/Services/AnalyticsService/SmartCity.AnalyticsService.API/Dockerfile
+    container_name: analyticsservice-api
+    ports:
+      - "5006:5006"
+    environment:
+      - SoapServices__AnalyticsDataService=http://analyticsdata-soap:5106/AnalyticsDataService.svc
+    depends_on:
+      - analyticsdata-soap
+    networks:
+      - smartcity-network
 
 volumes:
   postgres_data:
+
+networks:
+  smartcity-network:
+    driver: bridge

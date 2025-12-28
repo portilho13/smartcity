@@ -1,0 +1,12 @@
+{
+  "settings": [
+    {
+      "options": {
+        "rest": {
+          "endpoint": "http://localhost:5002/api/v1/vehicles",
+          "pathParams": []
+        }
+      }
+    }
+  ]
+}

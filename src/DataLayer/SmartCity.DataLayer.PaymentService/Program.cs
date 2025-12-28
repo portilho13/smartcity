@@ -9,9 +9,9 @@ using SmartCity.DataLayer.PaymentService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://localhost:5104");
+builder.WebHost.UseUrls("http://0.0.0.0:5104");
 
-var paymentDbConnectionString = "Host=localhost;Port=5432;Database=smartcity_payments;Username=myuser;Password=mypassword";
+var paymentDbConnectionString = builder.Configuration.GetConnectionString("PaymentDatabase") ?? "Host=localhost;Port=5432;Database=smartcity_payments;Username=myuser;Password=mypassword";
 
 builder.Services.AddSingleton(provider => new DatabaseConnectionFactory(paymentDbConnectionString));
 builder.Services.AddScoped<PaymentRepository>();
@@ -26,7 +26,7 @@ app.UseServiceModel(serviceBuilder =>
 {
     serviceBuilder.AddService<PaymentDataService>(options =>
     {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = app.Environment.IsDevelopment();
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
     });
 
     serviceBuilder.AddServiceEndpoint<PaymentDataService, IPaymentDataService>(

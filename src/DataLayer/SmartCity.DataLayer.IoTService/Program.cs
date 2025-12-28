@@ -9,9 +9,9 @@ using SmartCity.DataLayer.IoTService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://localhost:5105");
+builder.WebHost.UseUrls("http://0.0.0.0:5105");
 
-var iotDbConnectionString = "Host=localhost;Port=5432;Database=smartcity_iot;Username=myuser;Password=mypassword";
+var iotDbConnectionString = builder.Configuration.GetConnectionString("IoTDatabase") ?? "Host=localhost;Port=5432;Database=smartcity_iot;Username=myuser;Password=mypassword";
 
 builder.Services.AddSingleton(provider => new DatabaseConnectionFactory(iotDbConnectionString));
 builder.Services.AddScoped<IoTRepository>();
@@ -26,7 +26,7 @@ app.UseServiceModel(serviceBuilder =>
 {
     serviceBuilder.AddService<IoTDataService>(options =>
     {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = app.Environment.IsDevelopment();
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
     });
 
     serviceBuilder.AddServiceEndpoint<IoTDataService, IIoTDataService>(

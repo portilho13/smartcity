@@ -9,3 +9,5 @@
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Common/obj/Debug/net8.0/refint/SmartCity.Shared.Common.dll
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Common/obj/Debug/net8.0/SmartCity.Shared.Common.pdb
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Common/obj/Debug/net8.0/ref/SmartCity.Shared.Common.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Common/obj/Debug/net8.0/SmartCity.Shared.Common.csproj.AssemblyReference.cache
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Common/obj/Debug/net8.0/SmartCity.Shared.Common.sourcelink.json

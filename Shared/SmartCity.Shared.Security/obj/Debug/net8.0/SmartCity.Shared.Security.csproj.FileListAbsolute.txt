@@ -10,3 +10,4 @@
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/refint/SmartCity.Shared.Security.dll
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.pdb
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/ref/SmartCity.Shared.Security.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/Shared/SmartCity.Shared.Security/obj/Debug/net8.0/SmartCity.Shared.Security.sourcelink.json

@@ -9,7 +9,7 @@ using SmartCity.AnalyticsService.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.WebHost.UseUrls("http://localhost:5006");
+builder.WebHost.UseUrls("http://0.0.0.0:5006");
 
 // Configure JWT
 var jwtSecret = builder.Configuration["JwtSettings:Secret"];
@@ -54,6 +54,13 @@ builder.Services.AddScoped<IAnalyticsDataService>(provider =>
     return factory.CreateChannel();
 });
 
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+});
+
+
 // Register services
 builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 
@@ -97,15 +104,8 @@ builder.Services.AddSwaggerGen(c =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartCity Analytics Service API v1");
-        c.RoutePrefix = "swagger";
-    });
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();

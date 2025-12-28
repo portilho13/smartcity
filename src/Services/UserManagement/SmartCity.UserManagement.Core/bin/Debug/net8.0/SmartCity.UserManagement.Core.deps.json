@@ -10,7 +10,8 @@
         "dependencies": {
           "SmartCity.DataLayer.UserService": "1.0.0",
           "SmartCity.Shared.Common": "1.0.0",
-          "SmartCity.Shared.Security": "1.0.0"
+          "SmartCity.Shared.Security": "1.0.0",
+          "System.ServiceModel.Http": "8.0.0"
         },
         "runtime": {
           "SmartCity.UserManagement.Core.dll": {}
@@ -679,14 +680,14 @@
         }
       },
       "System.Security.Principal.Windows/5.0.0": {},
-      "System.ServiceModel.Http/8.1.2": {
+      "System.ServiceModel.Http/8.0.0": {
         "dependencies": {
           "System.ServiceModel.Primitives": "8.1.2"
         },
         "runtime": {
           "lib/net8.0/System.ServiceModel.Http.dll": {
-            "assemblyVersion": "8.1.2.0",
-            "fileVersion": "8.100.225.15402"
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.60704"
           }
         },
         "resources": {
@@ -966,7 +967,7 @@
           "CoreWCF.Primitives": "1.8.0",
           "Dapper": "2.1.66",
           "Npgsql": "10.0.1",
-          "System.ServiceModel.Http": "8.1.2",
+          "System.ServiceModel.Http": "8.0.0",
           "System.ServiceModel.NetTcp": "8.1.2",
           "System.ServiceModel.Primitives": "8.1.2"
         },
@@ -978,6 +979,9 @@
         }
       },
       "SmartCity.Shared.Common/1.0.0": {
+        "dependencies": {
+          "System.ServiceModel.Http": "8.0.0"
+        },
         "runtime": {
           "SmartCity.Shared.Common.dll": {
             "assemblyVersion": "1.0.0",
@@ -989,7 +993,8 @@
         "dependencies": {
           "Microsoft.Extensions.Options": "10.0.1",
           "Microsoft.IdentityModel.Tokens": "8.15.0",
-          "System.IdentityModel.Tokens.Jwt": "8.15.0"
+          "System.IdentityModel.Tokens.Jwt": "8.15.0",
+          "System.ServiceModel.Http": "8.0.0"
         },
         "runtime": {
           "SmartCity.Shared.Security.dll": {
@@ -1461,12 +1466,12 @@
       "path": "system.security.principal.windows/5.0.0",
       "hashPath": "system.security.principal.windows.5.0.0.nupkg.sha512"
     },
-    "System.ServiceModel.Http/8.1.2": {
+    "System.ServiceModel.Http/8.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2HoneRUCHB8kKQcuAladR16mIHuyi5f9DrrNnTjkaICv5X7YuwoI7GSrp9GTkRSxC4ddNcjMdwE01Rm0sPgoMw==",
-      "path": "system.servicemodel.http/8.1.2",
-      "hashPath": "system.servicemodel.http.8.1.2.nupkg.sha512"
+      "sha512": "sha512-Qwkoe0F+2e/2LiNwiIgfBTJTw11flv208UwS38ru+GR7nZk2VdGvAE8tqGB0RQIGra73Rux9jKNgfy1XtfXdLg==",
+      "path": "system.servicemodel.http/8.0.0",
+      "hashPath": "system.servicemodel.http.8.0.0.nupkg.sha512"
     },
     "System.ServiceModel.NetFramingBase/8.1.2": {
       "type": "package",

@@ -129,3 +129,4 @@
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.API/obj/Debug/net8.0/SmartCity.VehicleManagement.API.pdb
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.API/obj/Debug/net8.0/SmartCity.VehicleManagement.API.genruntimeconfig.cache
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.API/obj/Debug/net8.0/ref/SmartCity.VehicleManagement.API.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/VehicleManagement/SmartCity.VehicleManagement.API/obj/Debug/net8.0/SmartCity.VehicleManagement.API.sourcelink.json

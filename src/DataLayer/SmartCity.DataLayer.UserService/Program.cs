@@ -9,9 +9,11 @@ using SmartCity.DataLayer.UserService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Hardcoded connection string
-var userDbConnectionString = "Host=localhost;Port=5432;Database=smartcity_users;Username=myuser;Password=mypassword";
+builder.WebHost.UseUrls("http://0.0.0.0:5101");
 
+// Hardcoded connection string
+var userDbConnectionString = builder.Configuration.GetConnectionString("UserDatabase") 
+                             ?? "Host=localhost;Port=5432;Database=smartcity_users;Username=myuser;Password=mypassword";
 // Add services
 builder.Services.AddSingleton(provider => new DatabaseConnectionFactory(userDbConnectionString));
 builder.Services.AddScoped<UserRepository>();
@@ -26,7 +28,7 @@ app.UseServiceModel(serviceBuilder =>
 {
     serviceBuilder.AddService<UserDataService>(options =>
     {
-        options.DebugBehavior.IncludeExceptionDetailInFaults = app.Environment.IsDevelopment();
+        options.DebugBehavior.IncludeExceptionDetailInFaults = true;
     });
 
     serviceBuilder.AddServiceEndpoint<UserDataService, IUserDataService>(

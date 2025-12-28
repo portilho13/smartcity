@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using SmartCity.TripManagement.Core.DTOs;
 using SmartCity.TripManagement.Core.Services;
 using System.Security.Claims;
+using SmartCity.IoTService.Core.DTOs;
+using SmartCity.PaymentService.Core.DTOs;
+using SmartCity.VehicleManagement.Core.DTOs;
 
 namespace SmartCity.TripManagement.API.Controllers;
 
@@ -12,11 +15,13 @@ namespace SmartCity.TripManagement.API.Controllers;
 public class TripsController : ControllerBase
 {
     private readonly ITripService _tripService;
+    private readonly HttpClient _httpClient;
     private readonly ILogger<TripsController> _logger;
 
-    public TripsController(ITripService tripService, ILogger<TripsController> logger)
+    public TripsController(HttpClient httpClient, ITripService tripService, ILogger<TripsController> logger)
     {
         _tripService = tripService;
+        _httpClient = httpClient;
         _logger = logger;
     }
 
@@ -100,18 +105,77 @@ public class TripsController : ControllerBase
     [HttpPost("start")]
     [ProducesResponseType(typeof(TripDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> StartTrip([FromBody] StartTripRequest request)
     {
         var userId = GetCurrentUserId();
-        
-        // Check if user already has an active trip
+
+        // Capture Bearer token from incoming request
+        var accessToken = Request.Headers["Authorization"].FirstOrDefault()?.Replace("Bearer ", "");
+        if (string.IsNullOrEmpty(accessToken))
+            return Unauthorized(new { error = "Access token missing" });
+
+        _httpClient.DefaultRequestHeaders.Authorization =
+            new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", accessToken);
+
         var activeTrip = await _tripService.GetActiveTripByUserAsync(userId);
         if (activeTrip != null)
             return BadRequest(new { error = "User already has an active trip" });
 
+        var vehicleId = request.VehicleId;
+
+        var vehicleResponse = await _httpClient.GetAsync($"http://vehiclemanagement-api:5002/api/v1/vehicles/{vehicleId}");
+        if (!vehicleResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to get vehicle {VehicleId}. Status: {StatusCode}, Reason: {Reason}",
+                vehicleId, vehicleResponse.StatusCode, vehicleResponse.ReasonPhrase);
+            return StatusCode((int)vehicleResponse.StatusCode, new { error = $"Failed to get vehicle {vehicleId}" });
+        }
+
+        var vehicleDto = await vehicleResponse.Content.ReadFromJsonAsync<VehicleDto>();
+
+        var vehicleTypeResponse = await _httpClient.GetAsync($"http://vehiclemanagement-api:5002/api/v1/vehicletypes");
+        if (!vehicleTypeResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to get vehicle types. Status: {StatusCode}, Reason: {Reason}",
+                vehicleTypeResponse.StatusCode, vehicleTypeResponse.ReasonPhrase);
+            return StatusCode((int)vehicleTypeResponse.StatusCode, new { error = "Failed to get vehicle types" });
+        }
+
+        var vehicleTypeDtos = await vehicleTypeResponse.Content.ReadFromJsonAsync<VehicleTypeDto[]>();
+        var vehicleType = vehicleTypeDtos.FirstOrDefault(v => v.Id == vehicleDto.VehicleTypeId);
+
+        if (vehicleType == null)
+        {
+            _logger.LogError("Vehicle type {VehicleTypeId} not found", vehicleDto.VehicleTypeId);
+            return NotFound(new { error = "Vehicle type not found" });
+        }
+
+        var unlockFee = vehicleType.UnlockFee;
+
+        var vehicleStatusUpdateResponse = await _httpClient.PutAsJsonAsync(
+            $"http://vehiclemanagement-api:5002/api/v1/vehicles/{vehicleId}/status",
+            new UpdateVehicleStatusRequest { Status = "in_use" }
+        );
+
+        if (!vehicleStatusUpdateResponse.IsSuccessStatusCode)
+        {
+            _logger.LogError("Failed to update vehicle status. Status: {StatusCode}, Reason: {Reason}",
+                vehicleStatusUpdateResponse.StatusCode, vehicleStatusUpdateResponse.ReasonPhrase);
+            return StatusCode((int)vehicleStatusUpdateResponse.StatusCode, new { error = "Failed to update vehicle status" });
+        }
+
+        var commandRequest = new SendCommandRequest
+        {
+            CommandType = "unlock",
+            Parameters = null
+        };
+
         var trip = await _tripService.StartTripAsync(userId, request);
+
         return CreatedAtAction(nameof(GetTripById), new { id = trip.Id }, trip);
     }
+
 
     /// <summary>
     /// End a trip

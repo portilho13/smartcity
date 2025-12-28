@@ -943,6 +943,9 @@
         }
       },
       "SmartCity.Shared.Common/1.0.0": {
+        "dependencies": {
+          "System.ServiceModel.Http": "8.0.0"
+        },
         "runtime": {
           "SmartCity.Shared.Common.dll": {
             "assemblyVersion": "1.0.0",
@@ -954,7 +957,8 @@
         "dependencies": {
           "Microsoft.Extensions.Options": "10.0.1",
           "Microsoft.IdentityModel.Tokens": "8.15.0",
-          "System.IdentityModel.Tokens.Jwt": "8.15.0"
+          "System.IdentityModel.Tokens.Jwt": "8.15.0",
+          "System.ServiceModel.Http": "8.0.0"
         },
         "runtime": {
           "SmartCity.Shared.Security.dll": {
@@ -967,7 +971,8 @@
         "dependencies": {
           "SmartCity.DataLayer.VehicleService": "1.0.0",
           "SmartCity.Shared.Common": "1.0.0",
-          "SmartCity.Shared.Security": "1.0.0"
+          "SmartCity.Shared.Security": "1.0.0",
+          "System.ServiceModel.Http": "8.0.0"
         },
         "runtime": {
           "SmartCity.VehicleManagement.Core.dll": {

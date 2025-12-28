@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SmartCity.IoTService.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9c1032f9c361a91a451d437644e3a47d69e78729")]
 [assembly: System.Reflection.AssemblyProductAttribute("SmartCity.IoTService.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SmartCity.IoTService.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

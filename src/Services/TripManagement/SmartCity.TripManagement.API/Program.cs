@@ -9,6 +9,8 @@ using SmartCity.TripManagement.Core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.WebHost.UseUrls("http://0.0.0.0:5003");
+
 // Configure JWT
 var jwtSecret = builder.Configuration["JwtSettings:Secret"];
 if (string.IsNullOrEmpty(jwtSecret) || jwtSecret.Length < 32)
@@ -52,6 +54,8 @@ builder.Services.AddScoped<ITripDataService>(provider =>
     return factory.CreateChannel();
 });
 
+builder.Services.AddSingleton(new HttpClient());
+
 // Register services
 builder.Services.AddScoped<ITripService, TripService>();
 
@@ -93,17 +97,19 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+builder.Services.AddRouting(options =>
+{
+    options.LowercaseUrls = true;
+    options.LowercaseQueryStrings = true;
+});
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartCity Trip Management API v1");
-        c.RoutePrefix = "swagger";
-    });
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseDeveloperExceptionPage();
+
 
 app.UseAuthentication();
 app.UseAuthorization();

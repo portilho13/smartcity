@@ -160,3 +160,4 @@
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/UserManagement/SmartCity.UserManagement.API/bin/Debug/net8.0/tr/System.ServiceModel.NetTcp.resources.dll
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/UserManagement/SmartCity.UserManagement.API/bin/Debug/net8.0/zh-Hans/System.ServiceModel.NetTcp.resources.dll
 /Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/UserManagement/SmartCity.UserManagement.API/bin/Debug/net8.0/zh-Hant/System.ServiceModel.NetTcp.resources.dll
+/Users/marioportilho/Desktop/Coding/SmartCityTransport/src/Services/UserManagement/SmartCity.UserManagement.API/obj/Debug/net8.0/SmartCity.UserManagement.API.sourcelink.json

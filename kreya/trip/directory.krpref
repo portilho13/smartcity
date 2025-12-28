@@ -1,0 +1,12 @@
+{
+  "settings": [
+    {
+      "options": {
+        "rest": {
+          "endpoint": "http://localhost:5003/api/v1/trips",
+          "pathParams": []
+        }
+      }
+    }
+  ]
+}
