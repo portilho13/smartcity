@@ -1,6 +1,6 @@
 {
   "details": {
-    "endpoint": "http://localhost:5010",
+    "endpoint": "http://149.102.138.138:5010",
     "path": "/api/v1/weather?latitude=41.14&longitude=-8.61",
     "method": "GET",
     "pathParams": []

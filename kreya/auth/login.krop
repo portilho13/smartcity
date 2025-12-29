@@ -1,5 +1,6 @@
 {
   "details": {
+    "endpoint": "http://149.102.138.138:5010/api/v1/auth",
     "path": "/login",
     "method": "POST",
     "headers": [
